@@ -8,10 +8,12 @@ var totalTimeSec = 0;
 var totalTimeMin = 0;
 var lock=false;
 
+var audio = new Audio('beep.mp3');
+
 function increaseExe(){
 	if(!lock){
 		document.getElementById('setExerciceSec').value = parseInt(document.getElementById('setExerciceSec').value)+1;
-		updateTimer();		
+		updateTimer();
 	}
 }
 
@@ -25,8 +27,8 @@ function decreaseExe(){
 function increaseRest(){
 	if(!lock){
 		document.getElementById('setWaitSec').value = parseInt(document.getElementById('setWaitSec').value)+1;
-		updateTimer();	
-	}	
+		updateTimer();
+	}
 }
 
 function decreaseRest(){
@@ -47,7 +49,7 @@ function decreaseRep(){
 	if(!lock){
 		if(parseInt(document.getElementById('setNbRep').value) > 1) document.getElementById('setNbRep').value = parseInt(document.getElementById('setNbRep').value)-1;
 		updateTimer();
-	}	
+	}
 }
 
 function reset(){
@@ -66,7 +68,7 @@ function reset(){
 	updateTimer();
 }
 
-function updateTimer(){	
+function updateTimer(){
 	secExercice = parseInt(document.getElementById('setExerciceSec').value);
 	secWait = parseInt(document.getElementById('setWaitSec').value);
 	nbRep = parseInt(document.getElementById('setNbRep').value);
@@ -105,13 +107,14 @@ function setTimer(){
 		var countdownPreparation = setInterval(prepareTimer, 1000);
 		function prepareTimer(){
 			document.getElementById('timerText').innerHTML = '00:' + (prepTime.toString().length < 2 ? ('0'+prepTime) : prepTime);
+			if(prepTime == 3 || prepTime == 2 || prepTime == 1) audio.play();
 			prepTime = prepTime - 1;
 			if(prepTime < 0){
 				clearInterval(countdownPreparation);
 				exerciceInterval();
 			}
 		}
-	}		
+	}
 }
 
 function exerciceInterval(){
@@ -146,7 +149,7 @@ function waitInterval(){
 			nbRep--;
 			clearInterval(countdown2);
 			if(nbRep > 0){
-				exerciceInterval();	
+				exerciceInterval();
 			} else {
 				finish();
 			}
