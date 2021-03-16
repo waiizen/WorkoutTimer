@@ -128,6 +128,7 @@ function exerciceInterval(){
 
 	function timer(){
 		document.getElementById('timerText').innerHTML = '00:' + (sec.toString().length < 2 ? ('0'+sec) : sec);
+		if(sec == 3 || sec == 2 || sec == 1) audio.play();
 		sec = sec - 1;
 		if(sec < 0){
 			clearInterval(countdown1);
@@ -144,6 +145,7 @@ function waitInterval(){
 
 	function timer2(){
 		document.getElementById('timerText').innerHTML = '00:' + (sec.toString().length < 2 ? ('0'+sec) : sec);
+		if(sec == 3 || sec == 2 || sec == 1) audio.play();
 		sec = sec - 1;
 		if(sec < 0){
 			nbRep--;
