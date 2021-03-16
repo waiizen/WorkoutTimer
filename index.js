@@ -7,8 +7,19 @@ var prepTime = 10;
 var totalTimeSec = 0;
 var totalTimeMin = 0;
 var lock=false;
+var mute = false;
 
 var audio = new Audio('beep.mp3');
+
+function muteFun(){
+	if(mute){
+		document.getElementById('mute').src="unmute.png";
+		mute = false;
+	} else {
+		document.getElementById('mute').src="mute.png";
+		mute = true;
+	}
+}
 
 function increaseExe(){
 	if(!lock){
@@ -107,7 +118,7 @@ function setTimer(){
 		var countdownPreparation = setInterval(prepareTimer, 1000);
 		function prepareTimer(){
 			document.getElementById('timerText').innerHTML = '00:' + (prepTime.toString().length < 2 ? ('0'+prepTime) : prepTime);
-			if(prepTime == 3 || prepTime == 2 || prepTime == 1) audio.play();
+			if(!mute && (prepTime == 3 || prepTime == 2 || prepTime == 1)) audio.play();
 			prepTime = prepTime - 1;
 			if(prepTime < 0){
 				clearInterval(countdownPreparation);
@@ -128,7 +139,7 @@ function exerciceInterval(){
 
 	function timer(){
 		document.getElementById('timerText').innerHTML = '00:' + (sec.toString().length < 2 ? ('0'+sec) : sec);
-		if(sec == 3 || sec == 2 || sec == 1) audio.play();
+		if(!mute && (sec == 3 || sec == 2 || sec == 1)) audio.play();
 		sec = sec - 1;
 		if(sec < 0){
 			clearInterval(countdown1);
@@ -145,7 +156,7 @@ function waitInterval(){
 
 	function timer2(){
 		document.getElementById('timerText').innerHTML = '00:' + (sec.toString().length < 2 ? ('0'+sec) : sec);
-		if(sec == 3 || sec == 2 || sec == 1) audio.play();
+		if(!mute && (sec == 3 || sec == 2 || sec == 1)) audio.play();
 		sec = sec - 1;
 		if(sec < 0){
 			nbRep--;

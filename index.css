@@ -31,3 +31,9 @@ input[type=number]::-webkit-outer-spin-button {
 .onlyLilCss{
 	display: none;
 }
+
+.mute{
+	width: 2%;
+	height: auto;
+	margin-left: 1%;
+}
